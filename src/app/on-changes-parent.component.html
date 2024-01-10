@@ -1,0 +1,26 @@
+<h2>{{title}}</h2>
+
+<!-- Usa OnChangesParentComponent para cargar con ngModel power y hero.name -->
+<label for="power-input">Power: </label>
+<input type="text" id="power-input" [(ngModel)]="power">
+<label for="hero-name"> Hero.name: </label>
+<input type="text" id="hero-name" [(ngModel)]="hero.name">
+
+<button type="button" (click)="reset()">Reset Log</button>
+
+<!--
+    Al momento de traer con ngModel los valores, se Usa OnChangesComponent por medio de <on-changes> para disparer hook onchange
+    El componente de ejemplo, OnChangesComponent, tiene dos propiedades de input: héroe y poder.
+    El host OnChangesParentComponent se vincula a ellos de la siguiente manera >
+    <on-changes [hero]="hero" [power]="power"></on-changes>
+-->
+
+<on-changes [hero]="hero" [power]="power"></on-changes>
+<!-- 
+    OJO
+Las entradas del registro aparecen a medida que cambia el valor de cadena de la propiedad de power. 
+Sin embargo, tenga en cuenta que el método ngOnChanges() no detecta cambios en hero.name. 
+Esto se debe a que Angular llama al hook solo cuando cambia el valor de la propiedad de entrada. 
+En este caso, hero es la propiedad de entrada y el valor de la propiedad hero es la referencia al objeto hero. 
+La referencia del objeto no cambió cuando cambió el valor de su propia propiedad de nombre. 
+-->
